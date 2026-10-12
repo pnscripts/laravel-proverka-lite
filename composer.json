@@ -4,7 +4,7 @@
     "type": "library",
     "license": "MIT",
     "keywords": ["laravel", "validation", "bulgaria", "egn", "lnch", "eik", "bulstat", "vat"],
-    "homepage": "https://pnscripts.com/marketplace/proverka",
+    "homepage": "https://pnscripts.com/marketplace/laravel-proverka",
     "authors": [
         {"name": "PN Scripts", "email": "office@pnscripts.com", "homepage": "https://pnscripts.com"}
     ],

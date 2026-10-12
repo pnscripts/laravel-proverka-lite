@@ -41,7 +41,7 @@ line overrides the package message.
 Proverka Lite checks format and checksums offline; it does not ask any
 registry whether a number is issued. The full edition, Proverka, adds IBAN,
 phone numbers with E.164 storage and an Eloquent cast, and postal codes:
-https://pnscripts.com/marketplace/proverka. Uninstall Lite before installing
+https://pnscripts.com/marketplace/laravel-proverka. Uninstall Lite before installing
 the full edition (both register the same rule names).
 
 ## Tests
