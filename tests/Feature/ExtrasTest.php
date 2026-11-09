@@ -19,7 +19,18 @@ class ExtrasTest extends TestCase
     public function test_egn_or_lnch_accepts_either_and_nothing_else(): void
     {
         $egn = Egn::generate(new DateTimeImmutable('1979-11-30'), 'male', 40);
-        $future = Egn::generate(new DateTimeImmutable('+1 year'), 'male');
+        // A future-dated EGN can also pass the LNCh checksum by chance (about 1 in 10 dates),
+        // so pick the first serial whose number is not a valid LNCh; the test then checks the date rule only.
+        $future = null;
+        foreach (range(0, 499) as $serial) {
+            $candidate = Egn::generate(new DateTimeImmutable('+1 year'), 'male', $serial);
+            if (! Lnch::isValid($candidate)) {
+                $future = $candidate;
+                break;
+            }
+        }
+        $this->assertNotNull($future, 'no future EGN outside the LNCh checksum');
+        $this->assertTrue(Egn::isValid($future), 'future EGN keeps a valid checksum');
 
         foreach ([$egn, '1002003008'] as $ok) {
             $this->assertTrue(Validator::make(['id' => $ok], ['id' => 'bg_egn_or_lnch'])->passes(), $ok);
